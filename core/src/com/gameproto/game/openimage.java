@@ -71,6 +71,11 @@ Rectangle item;
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
         }
+        if (i>=x.length()-1){
+            if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
+                gp.setScreen(new theme(this.gp));
+            }
+        }
         if (i<x.length()-2&&x.charAt(i+1)=='\n'){
             if (count!=5&&(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched() )){
                 i++;
@@ -84,13 +89,12 @@ Rectangle item;
         }if (count>=3){
             item=new Rectangle(400,100,100,72);
         }
-        if (s.length()>=x.length()-2){
+        if (s.length()==x.length()){
             if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
             gp.setScreen(new theme(this.gp));
             }
         }
         if (count==5 ){
-
          if (Gdx.input.isTouched()){
            tp.set(Gdx.input.getX(), Gdx.input.getY(),0);
            vp.unproject(tp);
@@ -98,7 +102,6 @@ Rectangle item;
               count++;
               i++;
           }
-
          }
         }
     }
