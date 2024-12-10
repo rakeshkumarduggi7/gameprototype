@@ -25,7 +25,7 @@ public class openimage implements Screen {
     String s;
 gameproto gp;
 int count;
-Vector3 tp;
+
 Rectangle item;
     public   openimage( gameproto gp){
 
@@ -52,7 +52,7 @@ Rectangle item;
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         cu=Gdx.graphics.getHeight()-50;
         count=0;
-        tp=new Vector3();
+
     }
     @Override
     public void show() {
@@ -66,7 +66,7 @@ Rectangle item;
         batch.draw(morning,0,0);
         bmf.draw(batch,s,10,cu);
         bmf.draw(batch,"inventory :",100,100+72);
-        if(count>=3)bmf.draw(batch,"keys",400,100+72);
+        if(count>=3)bmf.draw(batch,"keys",400,172);
         batch.end();
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
@@ -96,6 +96,7 @@ Rectangle item;
         }
         if (count==5 ){
          if (Gdx.input.isTouched()){
+         Vector3    tp=new Vector3();
            tp.set(Gdx.input.getX(), Gdx.input.getY(),0);
            vp.unproject(tp);
           if(item.contains(tp.x,tp.y)){
