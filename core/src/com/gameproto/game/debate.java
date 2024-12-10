@@ -19,7 +19,7 @@ public class debate implements Screen {
    int i;    OrthographicCamera c;
    Viewport vp;
    SpriteBatch batch;
-   StringBuilder s=new StringBuilder(); StringBuilder x; int j=2338;
+   StringBuilder s=new StringBuilder(); StringBuilder x; int j=0;
    Rectangle o1;
    Rectangle o2;
    Rectangle pen;
@@ -55,8 +55,8 @@ boolean wa=false;
             "ben as he walks to the bus stop.. he looks at his time ,, its 9:26 am  \n" +
             "ben :omg, omg !! i will be late today they will detain me from university. what should i do...? \n" +
             "after finishing the university he returns back to the house, it is evening sun is about to set \n");
-    batch=new SpriteBatch(); i=2338;
-    count=22;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
+    batch=new SpriteBatch(); i=0;
+    count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
     FreeTypeFontGenerator.FreeTypeFontParameter pa=new FreeTypeFontGenerator.FreeTypeFontParameter();
     pa.size = 72;
     pa.color= Color.BLACK;
