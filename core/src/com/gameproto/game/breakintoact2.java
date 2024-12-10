@@ -1,5 +1,7 @@
 package com.gameproto.game;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -15,6 +17,10 @@ public class breakintoact2 implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(0,0,0,0);
+
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            Gdx.app.exit();
+        }
     }
 
     @Override

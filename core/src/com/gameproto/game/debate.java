@@ -23,8 +23,8 @@ public class debate implements Screen {
    Rectangle o1;
    Rectangle o2;
    Rectangle pen;
-   String op1="ben teleports near clg where no one can witness near a tree\n";
-   String op2="i dont think anyone should witness the magic of teleporting!\n";
+   String op1="\nben teleports near clg where no one can witness near a tree\n";
+   String op2="\ni dont think anyone should witness the magic of teleporting!\n";
    boolean pc=false;
 int ref=24;
 boolean wa=false;
@@ -115,9 +115,10 @@ bmf.draw(batch,"pendant",pen.x,  172);
                     x.insert(i,op1);
                     ref=0;
                     pc=false;
+                    i++;
                 } else if (o2.contains(tp.x, tp.y)) {
                     x.insert(i,op2);
-                     ref++;i+=2;
+                     ref++;i++;
                      wa=false;
                 }
             }
