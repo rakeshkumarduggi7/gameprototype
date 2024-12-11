@@ -11,7 +11,7 @@ public class gameproto extends Game {
 	@Override
 
 	public void create () {
-		this.setScreen(new debate( this ));
+		this.setScreen(new bstory( this ));
 	}
 	public void resize(int w,int h){
 
