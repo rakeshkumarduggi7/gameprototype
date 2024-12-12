@@ -28,6 +28,8 @@ public class funandgames implements Screen {
     Rectangle p;
     Vector3 tp;boolean b=false;
     Rectangle ch;
+    int po=0;
+    int [] ref={7,19,21,0};
     String[] sa={"get me bhind that tree..behind louis... ","take me back behind the rock across i came from","take me near the fire place"};
     public funandgames(gameproto gp){
         this.gp=gp;
@@ -49,7 +51,11 @@ public class funandgames implements Screen {
                 "\n" +
                 "they all start searching near the tree and they see a shade of a person in the dark at a distance , and they call out that direction to run towards..\n" +
                 "ben knowing the soldiers found their location , knowing if he and louis are both caught there is no chance getting back home soo....\n" +
-                "ben decided to ....";
+                "ben decided to ....\n" +
+                "(ben uses the pendant to teleport across to the rock on the other side he came from, before that he says to louis to stay behind the bushes till i distract them. And throws rocks and makes whistle sounds till he gets all the soldiers attention. Ben expected all of them to come to wards him but only a few were separated to check the bens side and the other are advancing to the louis position.)\n" +
+                "ben is now in immediate danger if he and louis gets caught ,the soldiers were now inspecting close to the rock he is hiding behind and just as they are a feet away ben then ....\n" +
+                "(uses pendant to teleport across to the fire place which is in between both the soldiers searching in the opposite directions )\n" +
+                "and puts the fire off , now all the soldiers are in complete dark with only light from the moon they cant see anyone if they are hiding in the bushes so as the soldiers were trying to bring the light back on ben and louis run away from them....";
         batch=new SpriteBatch(); i=0;
         j=0;
         count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
@@ -72,7 +78,7 @@ public class funandgames implements Screen {
         s=x.substring(j,i);
 
         ScreenUtils.clear(0,0,0,0);
-        if (count==7){
+        if (count==7||count==19||count==21){
             p=new Rectangle(500,100,150,72);
             if (Gdx.input.isTouched()) {
                 tp=new Vector3();
@@ -86,9 +92,9 @@ public class funandgames implements Screen {
             }
             if (b) {
                 if (ch.contains(tp.x, tp.y)) {
-                    count++;
-                    i++;
                     b=false;
+                    ch=new Rectangle();
+                    po++;
                 }
             }
         }
@@ -99,10 +105,10 @@ public class funandgames implements Screen {
         bmf.draw(batch,"pendant",500,100+72);
      if(b){
          ch = new Rectangle(500, 200, 200, 72);
-         bmf.draw(batch,"get me bhind that tree..behind louis... ",500,272) ;
+         bmf.draw(batch,sa[po],500,272) ;
      }
         batch.end();
-        if(count!=7) {
+        if(count!=ref[po]) {
             if (i < x.length() - 2 && x.charAt(i + 1) == '\n') {
                 if ((Gdx.input.isKeyPressed(Input.Keys.ENTER) || Gdx.input.isTouched())) {
                     i++;
@@ -123,6 +129,9 @@ public class funandgames implements Screen {
     j=i;
         }
         else if(i==2115){
+            j=i;
+        }
+        else if(i==2842){
             j=i;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){

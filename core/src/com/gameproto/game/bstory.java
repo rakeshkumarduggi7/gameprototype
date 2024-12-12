@@ -24,7 +24,6 @@ public class bstory implements Screen {
     Viewport vp;
     SpriteBatch batch;
     String s; String x;
-    int ref=36;
     Rectangle p;
     Rectangle mc;
     boolean b=false;
