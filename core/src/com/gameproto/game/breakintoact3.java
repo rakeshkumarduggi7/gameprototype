@@ -51,7 +51,7 @@ public class breakintoact3 implements Screen {
                 "soldier 2: what's going on !! ......\n" +
                 "meanwhile....\n" +
                 "ben : this is my only shot it should scare them pretty much....\n" +
-                "(gp : ben choses amap ways he can scare by using the magic power of pendant and his knowledge of how)\n" +
+                "(gp : ben choses amap ways he can scare by using the magic power of pendant )\n" +
                 "so he created a ruckus of pretending like a god and using pendant to travel in different directions and shout so the soldiers believe that he is omni present god,, a few soldiers attention was there at the beginning and later all the soldiers in the prison building were frightened and when ben got all of their attention he demanded that he release prof. and the pendant that was stolen from him. ");
           batch=new SpriteBatch(); i=0;
         j=0;
@@ -80,12 +80,16 @@ sa.add("\nben goes to the left of the prison \n");
 sa.add("\nben goes to the right of the prison \n");
 sa.add("\nben goes to the behind the prison \n");
 cr=new ArrayList<>();
-Rectangle c1=new Rectangle();
-        Rectangle c2=new Rectangle();
-        Rectangle c3=new Rectangle();
+Rectangle c1=new Rectangle(50,400,200,72);
+        Rectangle c2=new Rectangle(350,400,200,72);
+        Rectangle c3=new Rectangle(650,400,200,72);
+        cr.add(c1);
+        cr.add(c2);
+        cr.add(c3);
         cs=new ArrayList<>();
-
-
+cs.add("\nThe light shall flee from your shadow, leaving you to drown in an abyss where even darkness fears to tread.\n");
+cs.add("\nWith every breath, I will twist your fate into despair—your life, a crumbling ruin beneath my coils.\n");
+cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. You will beg for oblivion—and even that, I shall deny you\n");
 
     }
     @Override
@@ -98,11 +102,10 @@ Rectangle c1=new Rectangle();
         ScreenUtils.clear(1,255f/255f,240f/255f,0);
         if(count==ref){
             p=new Rectangle(500,100,100,72);
-
             tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             c.unproject(tp);
             if (Gdx.input.isTouched()&&p.contains(tp.x,tp.y)){
-b=true;
+                b=true;
             }
         }
         batch.begin();
@@ -113,8 +116,8 @@ b=true;
       if (b){
           int s=0;
           for (Rectangle r:ar){
-              r=new Rectangle(r.x,r.y,r.width,r.height);
-              bmf.draw(batch,as.get(s),r.x,r.y+72);
+              Rectangle l=new Rectangle(r.x,r.y,r.width,r.height);
+              bmf.draw(batch,as.get(s),l.x,l.y+72);
               if (Gdx.input.isTouched()){
                   tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
                   c.unproject(tp);
@@ -129,15 +132,39 @@ b=true;
                     break;
                   }
               }
-              if (as.size()==0)break;
               s++;
 
           }
       }
         if (a){
+            int s=0;
+            for (Rectangle r:cr){
+                r=new Rectangle(r.x,r.y,r.width,r.height);
+                bmf.draw(batch,cs.get(s).substring(0,15),r.x,r.y+72);
+                if (Gdx.input.isTouched()){
+                    tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                    c.unproject(tp);
+                    if (r.contains(tp.x,tp.y)){
+                        cr.remove(cr.size()-1);
+                        x.insert(i,cs.get(s));
+                        cs.remove(s);
+                        a=false;
+                        ref++;
+                        if (cs.size()==0){
+                            ref=-1;
+                            b=false;
+                            a=false;
+                            j=i;
+                        }
+                        break;
+                    }
+                }
+                s++;
 
+            }
         }
         batch.end();
+
         if (count!=ref){
         if (i<x.length()-2&&x.charAt(i+1)=='\n'){
             if ((Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched() )){
