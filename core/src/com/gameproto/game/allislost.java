@@ -24,6 +24,7 @@ public class allislost  implements Screen {
     String s; String x;
     public allislost(gameproto gp){
         this.gp=gp;
+        x="ben:  i am struck here forever , i cant .. free the prof. from the prison , i cant find any way to ....,  i cant even get near him now ....";
         batch=new SpriteBatch(); i=0;
         j=0;
         count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
@@ -60,14 +61,12 @@ public class allislost  implements Screen {
         } if(i==x.length()){
             i=x.length()-1;
         }
-        if(i==473){
-            j=i;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
         }if (i>=x.length()-2){
             if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
-                gp.setScreen(new debate(this.gp));
+                gp.setScreen(new darkknightofthesoul(this.gp));
             }
         }
     }

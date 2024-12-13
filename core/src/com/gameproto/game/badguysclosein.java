@@ -24,6 +24,10 @@ public class badguysclosein implements Screen {
     String s; String x;
     public badguysclosein(gameproto gp){
         this.gp=gp;
+        x="louis: hurry now , i think there are many, use your pendant get out of here but be close , and then find who has it.\n" +
+                "ben uses the pendant  from getting caught as well as to not let them witness the  magical power. he teleports away from the soldiers, but not far \n" +
+                "he kept an eye on where they will take louis. And as louis was caught and being taken to prison, he sees the pendant worn by the soldier who is taking him to prison, as he was being taken louis shouts that he sees the pendant as the soldiers   don't understand , bens presence is not hinted .\n" +
+                "ben : how can i get him and pendant back from prison? If cant get the pendant i am struck here forever.....";
         batch=new SpriteBatch(); i=0;
         j=0;
         count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
@@ -60,14 +64,12 @@ public class badguysclosein implements Screen {
         } if(i==x.length()){
             i=x.length()-1;
         }
-        if(i==473){
-            j=i;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
         }if (i>=x.length()-2){
             if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
-                gp.setScreen(new debate(this.gp));
+                gp.setScreen(new allislost(this.gp));
             }
         }
     }

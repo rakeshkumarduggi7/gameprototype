@@ -24,6 +24,10 @@ public class darkknightofthesoul implements Screen {
     String s; String x;
     public darkknightofthesoul(gameproto gp){
         this.gp=gp;
+        x="ben sees where louis was taken into ,but couldn't find  a way to release him and sits down a closes his eyes for sometime.. and goes to sleep\n" +
+                ".....jack : what about the report ? what have you prepared on??.....\n" +
+                "ben wakes up from his sleep at the very instant seemingly like he knows what do.\n" +
+                "he remembers about the history project he prepared for .. and it might just work.";
         batch=new SpriteBatch(); i=0;
         j=0;
         count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
@@ -60,9 +64,7 @@ public class darkknightofthesoul implements Screen {
         } if(i==x.length()){
             i=x.length()-1;
         }
-        if(i==473){
-            j=i;
-        }
+
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
             Gdx.app.exit();
         }if (i>=x.length()-2){
