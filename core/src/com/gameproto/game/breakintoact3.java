@@ -185,7 +185,7 @@ cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. Y
             Gdx.app.exit();
         }if (i>=x.length()-2){
             if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
-                gp.setScreen(new debate(this.gp));
+                gp.setScreen(new finale(this.gp));
             }
         }
     }
