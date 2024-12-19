@@ -94,6 +94,7 @@ public class bstory implements Screen {
     @Override
     public void render(float delta) {
         s=x.substring(j,i);
+        vp.apply();
         ScreenUtils.clear(1,255f/255f,240f/255f,0);
         if (count==36){
             p = new Rectangle(550, 100, 100, 72);
@@ -166,7 +167,7 @@ public class bstory implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
+vp.update(width,height);
     }
 
     @Override

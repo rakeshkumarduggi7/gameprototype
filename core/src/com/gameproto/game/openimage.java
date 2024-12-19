@@ -49,7 +49,7 @@ Rectangle item;
         c=new OrthographicCamera();
         c.setToOrtho(false,1920, 1080);
         vp=new FitViewport(1920,1080,c);
-        Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
         cu=Gdx.graphics.getHeight()-50;
         count=0;
 
@@ -68,8 +68,8 @@ Rectangle item;
         bmf.draw(batch,"inventory :",100,100+72);
         if(count>=3)bmf.draw(batch,"keys",400,172);
         batch.end();
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
-            Gdx.app.exit();
+      if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+           Gdx.app.exit();
         }
         if (i>=x.length()-1){
             if(Gdx.input.isKeyPressed(Input.Keys.ENTER)||Gdx.input.isTouched()){
@@ -123,6 +123,5 @@ Rectangle item;
     public void dispose() {
         batch.dispose();
         bmf.dispose();
-        batch.dispose();
-    }
+     }
 }

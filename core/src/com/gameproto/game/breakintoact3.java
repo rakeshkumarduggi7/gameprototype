@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class breakintoact3 implements Screen {
     gameproto gp;
@@ -35,11 +36,10 @@ public class breakintoact3 implements Screen {
     ArrayList<String> as;
     int ref=8;
     boolean b=false; Vector3 tp=new Vector3();
-    HashMap<Rectangle,String> hm;
     ArrayList<String> sa=new ArrayList<>();
     boolean a=false;
     ArrayList<Rectangle> cr;
-
+    FreeTypeFontGenerator.FreeTypeFontParameter pa;
     ArrayList<String> cs;
     public breakintoact3(gameproto gp){
         this.gp=gp;
@@ -56,41 +56,34 @@ public class breakintoact3 implements Screen {
           batch=new SpriteBatch(); i=0;
         j=0;
         count=0;   FreeTypeFontGenerator ftf=new FreeTypeFontGenerator(Gdx.files.internal("gamefont.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter pa=new FreeTypeFontGenerator.FreeTypeFontParameter();
+         pa=new FreeTypeFontGenerator.FreeTypeFontParameter();
         pa.size = 72;
-        pa.color= Color.BLACK;
+        pa.color= Color.GRAY;
         bmf=ftf.generateFont(pa);
         ftf.dispose();
         c=new OrthographicCamera();
         c.setToOrtho(false,1920, 1080);
         vp=new FitViewport(1920,1080,c);
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-        o1=new Rectangle(350,200,100,72);
-        o2=new Rectangle(500,200,100,72);
-        o3=new Rectangle(650,200,100,72);
         ar=new ArrayList<>();
         as=new ArrayList<>();
-        ar.add(o1);
-        ar.add(o2);
-        ar.add(o3);
+        ar.add(new Rectangle(350,200,100,72));
+        ar.add(new Rectangle(500,200,100,72));
+        ar.add(new Rectangle(650,200,100,72));
         as.add("go left ");
         as.add("go right ");
         as.add("go behind ");
 sa.add("\nben goes to the left of the prison \n");
 sa.add("\nben goes to the right of the prison \n");
 sa.add("\nben goes to the behind the prison \n");
-cr=new ArrayList<>();
-Rectangle c1=new Rectangle(50,400,200,72);
-        Rectangle c2=new Rectangle(350,400,200,72);
-        Rectangle c3=new Rectangle(650,400,200,72);
-        cr.add(c1);
-        cr.add(c2);
-        cr.add(c3);
         cs=new ArrayList<>();
-cs.add("\nThe light shall flee from your shadow, leaving you to drown in an abyss where even darkness fears to tread.\n");
-cs.add("\nWith every breath, I will twist your fate into despair—your life, a crumbling ruin beneath my coils.\n");
-cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. You will beg for oblivion—and even that, I shall deny you\n");
-
+        cs.add("\nben: The light shall flee from your shadow, leaving you to drown in an abyss where even darkness fears to tread.\n");
+        cs.add("\nben: With every breath, I will twist your fate into despair—your life, a crumbling ruin beneath my coils.\n");
+        cs.add("\nben: Your hopes will rot before your eyes, devoured by my endless hunger. You will beg for oblivion—and even that, I shall deny you\n");
+cr=new ArrayList<>();
+        cr.add(new Rectangle(50,400,300,72));
+        cr.add(new Rectangle(550,400,300,72));
+        cr.add(new Rectangle(1050,400,300,72));
     }
     @Override
     public void show() {
@@ -98,9 +91,11 @@ cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. Y
     }
     @Override
     public void render(float delta) {
+        batch.setProjectionMatrix(c.combined);
         s=new StringBuilder(x.substring(j,i));
-        ScreenUtils.clear(1,255f/255f,240f/255f,0);
-        if(count==ref){
+        vp.apply();
+        ScreenUtils.clear(0,0,0,0);
+        if(count==ref&&!a){
             p=new Rectangle(500,100,100,72);
             tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
             c.unproject(tp);
@@ -113,15 +108,42 @@ cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. Y
         bmf.draw(batch,"inventory :",100,100+72);
         bmf.draw(batch,"keys",400,100+72);
         bmf.draw(batch,"pendant",500,172);
+        if (a){
+            int s=0;
+            Iterator<Rectangle> ira=cr.iterator();
+            while (ira.hasNext()){
+                Rectangle q=ira.next();
+                bmf.draw(batch,cs.get(s).substring(0,15),q.x,q.y+pa.size);
+                if (Gdx.input.isTouched()){
+                    tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+                    c.unproject(tp);
+                    if (q.contains(tp.x,tp.y)){
+                        ira.remove( );
+                        x.insert(i,cs.get(s));
+                        cs.remove(s);
+                        a=false;
+                        ref++;
+                        if (cs.size()==0){
+                            ref=-1;
+                            b=false;
+                            j=i;
+                        }
+                        break;
+                    }
+                }
+                s++;
+
+            }
+        }
       if (b){
           int s=0;
           for (Rectangle r:ar){
               Rectangle l=new Rectangle(r.x,r.y,r.width,r.height);
-              bmf.draw(batch,as.get(s),l.x,l.y+72);
+              bmf.draw(batch,as.get(s),l.x,l.y+pa.size);
               if (Gdx.input.isTouched()){
                   tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
                   c.unproject(tp);
-                  if (r.contains(tp.x,tp.y)){
+                  if (l.contains(tp.x,tp.y)){
                     ar.remove(ar.size()-1);
                     as.remove(s);
                     b=false;
@@ -136,33 +158,7 @@ cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. Y
 
           }
       }
-        if (a){
-            int s=0;
-            for (Rectangle r:cr){
-                r=new Rectangle(r.x,r.y,r.width,r.height);
-                bmf.draw(batch,cs.get(s).substring(0,15),r.x,r.y+72);
-                if (Gdx.input.isTouched()){
-                    tp.set(Gdx.input.getX(), Gdx.input.getY(), 0);
-                    c.unproject(tp);
-                    if (r.contains(tp.x,tp.y)){
-                        cr.remove(cr.size()-1);
-                        x.insert(i,cs.get(s));
-                        cs.remove(s);
-                        a=false;
-                        ref++;
-                        if (cs.size()==0){
-                            ref=-1;
-                            b=false;
-                            a=false;
-                            j=i;
-                        }
-                        break;
-                    }
-                }
-                s++;
 
-            }
-        }
         batch.end();
 
         if (count!=ref){
@@ -192,7 +188,7 @@ cs.add("\nYour hopes will rot before your eyes, devoured by my endless hunger. Y
 
     @Override
     public void resize(int width, int height) {
-
+vp.update(width,height);
     }
 
     @Override

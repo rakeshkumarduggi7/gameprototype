@@ -57,7 +57,7 @@ public class theme    implements Screen {
         c.setToOrtho(false,1920, 1080);
         vp=new FitViewport(1920,1080,c);
         Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
-        opt=new Rectangle(100,272,100,72);
+        opt=new Rectangle(100,200,100,72);
     }
     @Override
     public void show() {
@@ -65,6 +65,7 @@ public class theme    implements Screen {
     @Override
     public void render(float delta) { s=x.substring(j,i);
         ScreenUtils.clear(1,223f/255f,186f/255f,0);
+        vp.apply();
 batch.begin();
         bmf.draw(batch,s,10, c.viewportHeight-50, 1920, -1, true);
         bmf.draw(batch,"inventory :",100,100+72);
